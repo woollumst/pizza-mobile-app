@@ -6,7 +6,10 @@ A mobile app for a pizza restaurant in Maine
 - Toby Woollums
 
 ## How To Run Server
-TODO
+1. Pull Repo
+2. cd to /server folder
+3. Run 'npm install'
+4. Run 'npm start' to run TS start script
 
 ## Structure
 #### Backend : Node.ts (TypeScript) + Express
