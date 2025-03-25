@@ -13,13 +13,16 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "pg": "^8.14.1",
     "server": "file:"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.11",
+    "@types/pg": "^8.11.11",
     "@types/supertest": "^6.0.2",
     "jest": "^29.7.0",
     "supertest": "^7.1.0",
