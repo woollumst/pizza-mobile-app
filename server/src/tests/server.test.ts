@@ -7,4 +7,9 @@ describe('Server', () => {
     //     const response = await request(app).get('/');
     //     expect(response.text).toMatch(/^Database/);
     // });
+
+    it('should return Hello World', async () => {
+        const response = await request(app).get('/');
+        expect(response.text).toMatch(/^Hello/);
+    })
 });

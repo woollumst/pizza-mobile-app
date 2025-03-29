@@ -1,7 +1,10 @@
 import express from "express";
 import client from "./repository/db";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
+
 const port = process.env.PORT || 3000;
 const host = 'localhost';
 
@@ -10,12 +13,13 @@ export const sum = (a: number, b: number): number => { // Test function to make 
 }
 
 app.get('/', async (req, res) => { // Test endpoint to ensure server is live
-    try{
-        const result = await client.query("SELECT NOW()");
-        res.send(`Database connected! Server time: ${result.rows[0].now}`);
-    } catch(error) {
-        res.status(500).send('Database connection failed');
-    }
+    res.send('Hello World!');
+    // try{ // old PG setup
+    //     const result = await client.query("SELECT NOW()");
+    //     res.send(`Database connected! Server time: ${result.rows[0].now}`);
+    // } catch(error) {
+    //     res.status(500).send('Database connection failed');
+    // }
 });
 
 app.listen(port, () => { // Launch server
