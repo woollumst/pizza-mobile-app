@@ -6,3 +6,5 @@ interface menuItem {
     category: string; // For sorting when displaying full menu
     image_url: string | null; // nullable so we can add items before getting pictures. Can add placeholder picture on frontend perhaps
 }
+
+// optionally, maybe add field like "availability" so items marked out of stock can be disabled

@@ -3,7 +3,7 @@
 
 
 
-// Post /               new order from CaretPosition
+// Post /               new order from Cart
 
 // Get /:id             get order details
 

@@ -3,7 +3,7 @@
 
 
 
-// Get /    Fetch cart
+// Get /                Fetch cart
 
 // Post /add            add menuItem to cart
 

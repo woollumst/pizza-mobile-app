@@ -3,10 +3,10 @@
 
 
 
-// Get /        fetch all users, admin
+// Get /                fetch all users, admin
 
-// Get /:id     get one user
+// Get /:id             get one user
 
-// Put /:id     update user info
+// Put /:id             update user info
 
-// Delete /:id  delete user
+// Delete /:id          delete user
