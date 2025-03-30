@@ -1,16 +1,11 @@
 import express from "express";
-import client from "./repository/db";
 import dotenv from "dotenv";
 
 dotenv.config();
 const app = express();
 
 const port = process.env.PORT || 3000;
-const host = 'localhost';
-
-export const sum = (a: number, b: number): number => { // Test function to make sure Jest is working with TypeScript as intended
-    return a + b;
-}
+const host = process.env.HOST || 'localhost';
 
 app.get('/', async (req, res) => { // Test endpoint to ensure server is live
     res.send('Hello World!');
