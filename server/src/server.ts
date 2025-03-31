@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import sequelize from "./repository/db";
 // import authRoutes from "./controllers/authController.js"; //sample for importing routes (1/2)
 
 dotenv.config();

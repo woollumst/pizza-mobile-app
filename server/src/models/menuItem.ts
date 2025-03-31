@@ -1,14 +1,34 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../repository/sequelize';
+import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize';
+import sequelize from '../repository/db';
 
-class MenuItem extends Model {
-    public id!: number;
-    public name!: string;
-    public description!: string | null; // Optional description
-    public price!: number;
-    public category!: string;  // For sorting when displaying full menu
-    //public imagelink!: string | null; // nullable so we can add items before getting pictures. Can add placeholder picture on frontend perhaps
+// const sequelize = new Sequelize( ... )
+
+class MenuItem extends Model<InferAttributes<MenuItem>, InferCreationAttributes<MenuItem>> {
+    declare id: CreationOptional<number>;
+    declare name: string;
+    declare description: CreationOptional<string>; // Optional description
+    declare price: number;
+    declare category: string;  // For sorting when displaying full menu
+    declare createdAt: Date;
+    declare updatedAt: Date;
+    //declare imagelink: string | null; // nullable so we can add items before getting pictures. Can add placeholder picture on frontend perhaps
+    // optionally, maybe add field like "availability" so items marked out of stock can be disabled
+
+    /*
+    declare static associations: {
+        projects: Association<UserActivation, Project>;
+    }
+    */
 }
+
+/*  // other way to add associations?
+    X.belongsTo(Y); // where X has a foreign key field that should contain a value from Y 
+    X.hasMany(Y, {  // 
+        sourceKey: 'id',
+        foreignKey: 'ownerId',
+        as: 'Ys' // name in associations
+    });
+*/
 
 MenuItem.init(
     {
@@ -18,23 +38,24 @@ MenuItem.init(
             primaryKey: true,
         },
         name: {
-
+            type: DataTypes.STRING,
         },
         description: {
-            
+            type: DataTypes.STRING,
         },
         price: {
-
+            type: DataTypes.FLOAT,
         },
         category: {
-
+            type: DataTypes.STRING,
         },
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
     },
     {
+        tableName: 'MenuItems',
         sequelize,
-        tableName: 'menuItems',
-    }
+    },
 );
 
 export default MenuItem;
-// optionally, maybe add field like "availability" so items marked out of stock can be disabled

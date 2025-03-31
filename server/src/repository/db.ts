@@ -20,4 +20,6 @@ const testConnection = async () => {
     }
 };
 
-export default Sequelize;
+testConnection;
+
+export default sequelize;
