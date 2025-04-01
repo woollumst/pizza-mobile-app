@@ -4,8 +4,8 @@ import sequelize from '../repository/db';
 // const sequelize = new Sequelize( ... )
 
 class MenuItem extends Model<InferAttributes<MenuItem>, InferCreationAttributes<MenuItem>> {
-    declare id: CreationOptional<number>;
-    declare name: string;
+    declare itemId: CreationOptional<number>;
+    declare itemName: string;
     declare description: CreationOptional<string>; // Optional description
     declare price: number;
     declare category: string;  // For sorting when displaying full menu
@@ -32,12 +32,12 @@ class MenuItem extends Model<InferAttributes<MenuItem>, InferCreationAttributes<
 
 MenuItem.init(
     {
-        id: {
+        itemId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        name: {
+        itemName: {
             type: DataTypes.STRING,
         },
         description: {
@@ -57,5 +57,7 @@ MenuItem.init(
         sequelize,
     },
 );
+
+MenuItem.sync();
 
 export default MenuItem;

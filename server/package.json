@@ -4,6 +4,7 @@
   "main": "src/server.ts",
   "scripts": {
     "test": "jest",
+    "sync": "ts-node src/repository/sync.ts",
     "start": "ts-node src/server.ts",
     "build": "tsc",
     "dev": "ts-node-dev src/server.ts"
