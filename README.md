@@ -2,7 +2,7 @@
 A mobile app for a pizza restaurant in Maine
 
 ## Developers 
-- Richard Aldrich 
+- Richard Aldrich
 - Toby Woollums
 
 ## How To Run Server
@@ -13,6 +13,12 @@ A mobile app for a pizza restaurant in Maine
 
 ## Structure
 #### Backend : Node.ts (TypeScript) + Express
-#### Database : PostgreSQL 
+#### Database : PostgreSQL (Sequelize.ts)
 #### Frontend : React Native (TypeScript)
 #### Testing : Jest
+
+### TODO :
+#### Authentication : Firebase Auth
+#### Mobile Push Notifications : Firebase Cloud Messaging
+#### Payment Processing : Stripe 
+#### Hosting (Production): AWS / Heroku / Digital Ocean
