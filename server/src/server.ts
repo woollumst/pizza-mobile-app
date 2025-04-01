@@ -15,8 +15,22 @@ app.get('/', async (req, res) => { // Test endpoint to ensure server is live
 
 // app.use("/auth", authRoutes); // sample for importing routes (2/2)
 
+const logCreatedTables = async () => {
+    try {
+        await sequelize.authenticate();
+        console.log('Connected to sequelize database!');
+
+        const tables = await sequelize.getQueryInterface().showAllTables();
+        console.log('Tables in the current database:');
+        console.log(tables);
+    } catch (error) {
+        console.error('Unable to connect to database:', error);
+    }
+}
+
 app.listen(port, () => { // Launch server
     console.log(`Server listening at http://${host}:${port}`);
+    logCreatedTables();
 });
 
 export { app }; // exporting app for testing

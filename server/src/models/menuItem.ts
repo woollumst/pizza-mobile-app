@@ -1,5 +1,7 @@
 import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from 'sequelize';
 import sequelize from '../repository/db';
+import Cart from './Cart';
+import OrderItem from './OrderItem';
 
 // const sequelize = new Sequelize( ... )
 
@@ -14,21 +16,8 @@ class MenuItem extends Model<InferAttributes<MenuItem>, InferCreationAttributes<
     //declare imagelink: string | null; // nullable so we can add items before getting pictures. Can add placeholder picture on frontend perhaps
     // optionally, maybe add field like "availability" so items marked out of stock can be disabled
 
-    /*
-    declare static associations: {
-        projects: Association<UserActivation, Project>;
-    }
-    */
+   // Foreign Keys managed with Associations
 }
-
-/*  // other way to add associations?
-    X.belongsTo(Y); // where X has a foreign key field that should contain a value from Y 
-    X.hasMany(Y, {  // 
-        sourceKey: 'id',
-        foreignKey: 'ownerId',
-        as: 'Ys' // name in associations
-    });
-*/
 
 MenuItem.init(
     {
@@ -44,7 +33,7 @@ MenuItem.init(
             type: DataTypes.STRING,
         },
         price: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.DECIMAL(10,2),
         },
         category: {
             type: DataTypes.STRING,
@@ -57,7 +46,5 @@ MenuItem.init(
         sequelize,
     },
 );
-
-MenuItem.sync();
 
 export default MenuItem;
