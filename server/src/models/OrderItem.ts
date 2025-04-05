@@ -7,7 +7,9 @@ class OrderItem extends Model<InferAttributes<OrderItem>, InferCreationAttribute
     declare orderItemId: CreationOptional<number>;
     declare quantity: number;
     declare priceAtPurchase: number; // Price at time of purchase
-    // Foreign Keys managed with Associations
+    // Foreign Keys managed with Associations.
+    // OrderItem gets a MenuItem Foreign Key
+    // OrderItem gets an Order Foreign Key
 }
 
 OrderItem.init(

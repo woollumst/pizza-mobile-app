@@ -6,6 +6,7 @@ class Cart extends Model<InferAttributes<Cart>, InferCreationAttributes<Cart>> {
     declare cartId: CreationOptional<number>;
     declare quantity: number;
     // Foreign Keys managed with Associations
+    // Cart gets a MenuItem Foreign Key
 }
 
 Cart.init(

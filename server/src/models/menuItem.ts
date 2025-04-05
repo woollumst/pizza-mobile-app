@@ -8,7 +8,7 @@ import OrderItem from './OrderItem';
 class MenuItem extends Model<InferAttributes<MenuItem>, InferCreationAttributes<MenuItem>> {
     declare itemId: CreationOptional<number>;
     declare itemName: string;
-    declare description: CreationOptional<string>; // Optional description
+    // declare description: CreationOptional<string>; // Optional description
     declare price: number;
     declare category: string;  // For sorting when displaying full menu
     declare createdAt: Date;
@@ -28,10 +28,13 @@ MenuItem.init(
         },
         itemName: {
             type: DataTypes.STRING,
+            allowNull: false,
         },
-        description: {
-            type: DataTypes.STRING,
-        },
+        // description: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        //     defaultValue: null,
+        // },
         price: {
             type: DataTypes.DECIMAL(10,2),
         },

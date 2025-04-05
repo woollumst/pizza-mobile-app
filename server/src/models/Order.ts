@@ -10,6 +10,7 @@ class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>
     declare createdAt: Date;
     declare updatedAt: Date;
     // Foreign Keys managed with Associations
+    // Order gets User Foreign Key
 }
 
 Order.init(

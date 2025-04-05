@@ -8,14 +8,20 @@ import OrderItem from '../models/OrderItem';
 import User from '../models/User';
 
 // Associations :
-Cart.belongsTo(MenuItem); // Cart gets MenuItem FK
-MenuItem.hasMany(OrderItem); // OrderItem gets MenuItem FK
-MenuItem.hasMany(Cart); // Cart gets MenuItem FK
-Order.hasMany(OrderItem); // OrderItem gets Order FK
-Order.belongsTo(User); // Order gets User FK
-OrderItem.belongsTo(Order); // Gives OrderItem an Order Foreign Key
-OrderItem.belongsTo(MenuItem); // Gives OrderItem a MenuItem Foreign Key
-User.hasMany(Order); // Order gets User FK
+// Cart gets a MenuItem Foreign Key
+Cart.belongsTo(MenuItem);
+MenuItem.hasMany(Cart);
+
+// OrderItem gets a MenuItem Foreign Key
+MenuItem.hasMany(OrderItem);
+OrderItem.belongsTo(MenuItem);
+// OrderItem gets an Order Foreign Key
+OrderItem.belongsTo(Order);
+Order.hasMany(OrderItem);
+
+// Order gets User Foreign Key
+Order.belongsTo(User);
+User.hasMany(Order);
 
 const syncDatabase = async () => {
     try {
