@@ -1,6 +1,6 @@
 // Managing menuItems. Viewing menu, handling item info when requested etc
 import express from "express";
-import menuService from “../service/menuService”;
+import { menuService } from “../service/menuService”;
 // import authenticate from "../middleware/authMiddleware";
 
 const menuRoutes = express.Router();
@@ -11,10 +11,10 @@ menuRoutes.get(‘/’, async (req, res) => {
 // May need to refactor for TS Sequelize
 try{
         const result = await menuService.getMenu();
-        const menu = result.menu;
         if(!result.success){
             res.status(404).json({ error: 'Failed to fetch menu items' });
         }
+        const menu = result.menuArray;
         res.status(200).json({
             success: true,
             menu: menu.map(menuItem => ({
