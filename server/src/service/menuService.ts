@@ -1,37 +1,39 @@
 import MenuItem from "../models/MenuItem";
 import { menuRepository } from "../repository/menuRepository";
 
-const menuService = {
+export class menuService {
     constructor(menuRepository: menuRepository) {}, // prep dependency injection for mocks/testing
 
-    async getMenu() {
-        // menuRepository.getMenu();
-        // ES6 Example w/o sequelize?
-        /*
+    async getMenu() { // TEST
         try{
-            const result = await taskRepository.getTasks();
+            const result = await menuRepository.getMenu();
             return {
                 success: true,
-                message: 'Fetch tasks successful',
-                tasks: result,
-            };
+                message: 'Menu fetched successfully',
+                menuArray: result,
+            }
         } catch (error) {
-            console.error('getTasks error: ', error);
+            console.error('getMenu error: ', error);
             return (success: false, message: 'Internal server error'); 
         }
-        */
     },
 
-    async getMenuItem() {
-        try {
-
+    async getMenuItem() { // TEST
+        try{
+            const result = await menuRepository.getById();
+            return {
+                success: true,
+                message: 'Menu item fetched successfully',
+                menuItem: result,
+            }
         } catch (error) {
-
+            console.error('getMenuItem error: ', error);
+            return (success: false, message: 'Internal server error'); 
         }
     },
 
-    async createMenuItem(newItem: MenuItem) {
-        try {
+    async createMenuItem(newItem: MenuItem) { // TODO
+        try { // old ? review, refactor
             const newMenuItem = MenuItem.build({ 
                 itemName: newItem.itemName, 
                 // description: newItem.description || null, 
@@ -45,14 +47,24 @@ const menuService = {
             
         }
     },
-    async updateMenuItem() {
-    
+
+    async updateMenuItem() { // TODO
+        try{
+            
+            }
+        } catch (error) {
+            console.error('updateMenuItem error: ', error);
+            return (success: false, message: 'Internal server error'); 
+        }
     },
 
-    async deleteMenuItem() {
-
+    async deleteMenuItem() { // TODO
+        try{
+            
+            }
+        } catch (error) {
+            console.error('deleteMenuItem error: ', error);
+            return (success: false, message: 'Internal server error'); 
+        }
     }
-
 }
-
-export default menuService;
