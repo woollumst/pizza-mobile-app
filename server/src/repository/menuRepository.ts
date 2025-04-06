@@ -12,14 +12,14 @@ export class menuRepository {
     // Admin Commands
     // Create Menu Item
     async createMenuItem(newMenuItem: MenuItem){
-        return await newMenuItem.save();
+        await newMenuItem.save();
     }
     // Update a Menu Item by Id
-    async updateMenuItem(){
-
+    async updateMenuItem(updatedItem: MenuItem){
+        await updatedMenuItem.save();
     }
     // Delete a Menu Item by Id
-    async deleteMenuItem(itemId: number){
-        
+    async deleteMenuItem(itemToDelete: MenuItem){
+        await itemToDelete.destroy();
     }
 }
