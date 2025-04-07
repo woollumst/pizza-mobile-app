@@ -1,4 +1,4 @@
-import sequelize from '../repository/db';
+import sequelize from '../repositories/db';
 
 beforeAll(async() => {
     await sequelize.sync({ force: true });

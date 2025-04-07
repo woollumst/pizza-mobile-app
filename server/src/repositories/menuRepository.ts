@@ -1,8 +1,8 @@
 import MenuItem from "../models/MenuItem";
 
-export class menuRepository {
+export class MenuRepository {
     // Get all Menu Items
-    static async getMenu(){
+    async getMenu(){
         try{
             const fullMenu = await MenuItem.findAll();  // Return all Menu Items (Full Menu)
             return fullMenu;
@@ -12,7 +12,7 @@ export class menuRepository {
         }
     }
     // Get one Menu Item by Id
-    static async getMenuItem(itemId: number){
+    async getMenuItem(itemId: number){
         try{
             const menuItem = await MenuItem.findByPk(itemId); // Return one menu item by Primary Key (ID)
             return menuItem;
@@ -23,7 +23,7 @@ export class menuRepository {
     }
     // Admin Commands
     // Create Menu Item
-    static async createMenuItem(newMenuItem: MenuItem){
+     async createMenuItem(newMenuItem: MenuItem){
         try{
             await newMenuItem.save(); // Save new menu item
             return await newMenuItem.reload(); // Refresh with persisted data, return new item from database
@@ -33,7 +33,7 @@ export class menuRepository {
         }
     }
     // Update a Menu Item by Id
-    static async updateMenuItem(updatedItem: MenuItem){
+    async updateMenuItem(updatedItem: MenuItem){
         try{
             await updatedItem.save();
             return await updatedItem.reload();
@@ -43,7 +43,7 @@ export class menuRepository {
         }
     }
     // Delete a Menu Item by Id
-    static async deleteMenuItem(itemId: number){
+    async deleteMenuItem(itemId: number){
         try{
             const itemToDelete = await this.getMenuItem(itemId);
             if (itemToDelete) {

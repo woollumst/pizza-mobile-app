@@ -1,5 +1,5 @@
 import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes } from "sequelize";
-import sequelize from "../repository/db";
+import sequelize from "../repositories/db";
 import MenuItem from "./MenuItem";
 
 class Cart extends Model<InferAttributes<Cart>, InferCreationAttributes<Cart>> {

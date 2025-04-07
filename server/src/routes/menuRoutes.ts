@@ -1,59 +1,30 @@
 // Managing menuItems. Viewing menu, handling item info when requested etc
-import express from "express";
-import { menuService } from “../service/menuService”;
+import { Router } from "express";
+import { MenuController } from "../controllers/menuController";
 // import authenticate from "../middleware/authMiddleware";
 
-const menuRoutes = express.Router();
+const menuRoutes = Router();
+const menuController = new MenuController();
 
-// /menu endpoints ( hostname/menu/:id )
+// /menu endpoints 
+// (example: ${hostname}/menu/:id )
+
 // Get /                Get full menu
-menuRoutes.get(‘/’, async (req, res) => {
-// May need to refactor for TS Sequelize
-try{
-        const result = await menuService.getMenu();
-        if(!result.success){
-            res.status(404).json({ error: 'Failed to fetch menu items' });
-        }
-        const menu = result.menuArray;
-        res.status(200).json({
-            success: true,
-            menu: menu.map(menuItem => ({
-                itemId: menuItem.itemId,
-                itemName: menuItem.itemName,
-                description: menuItem.description,
-                price: menuItem.price,
-                category: menuItem.category,
-                createdAt: menuItem.createdAt,
-                updatedAt: menuItem.updatedAt,
-            }))
-        }); // Need to test
-    } catch (error) {
-        console.log('Server error with fetching menu');
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Error getting menu', error: 'Failed to get menu items' });
-    }
-*/
-});
+menuRoutes.get('/', async (req, res) => menuController.getMenu(req, res));
 
 // Get /:id             Get one item from menu
-menuRoutes.get(‘/:id’, async (req, res) => {
+menuRoutes.get('/:id', async (req, res) => menuController.getMenuItem(req, res));
 
-});
+// ADMIN COMMANDS
+// (Implement Role-Based Access Control)
 
-// Admin Commands (Implement Role-Based Access Control)
 // Post /:id            Add new item (ADMIN)
-menuRoutes.post(‘/:id’, async (req, res) => {
-
-});
+menuRoutes.post('/:id', async (req, res) => menuController.createMenuItem(req, res));
 
 // Put /:id             Update item (ADMIN)
-menuRoutes.put(‘/:id’, async (req, res) => {
-
-});
+menuRoutes.put('/:id', async (req, res) => menuController.updateMenuItem(req, res));
 
 // Delete /:id          Delete item (ADMIN) (add confirmation dialogue, maybe undo button)
-menuRoutes.delete(‘/:id’, async (req, res) => {
-
-});
+menuRoutes.delete('/:id', async (req, res) => menuController.deleteMenuItem(req, res));
 
 export default menuRoutes;

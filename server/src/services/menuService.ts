@@ -1,16 +1,16 @@
 import MenuItem from "../models/MenuItem";
-import { menuRepository } from "../repository/menuRepository";
+import { MenuRepository } from "../repositories/menuRepository";
 
-export class menuService {
-    constructor(private menuRepository: menuRepository) {} // prep dependency injection for mocks/testing
+export class MenuService {
+    constructor(private menuRepository: MenuRepository) {} // prep dependency injection for mocks/testing
 
     async getMenu() { // TEST
         try{
-            const result = await menuRepository.getMenu();
+            const result = await this.menuRepository.getMenu();
             return {
                 success: true,
                 message: 'Menu fetched successfully',
-                menuArray: result,
+                menu: result,
             }
         } catch (error) {
             console.error('getMenu error: ', error);
@@ -23,7 +23,7 @@ export class menuService {
 
     async getMenuItem(itemId: number) { // TEST
         try{
-            const result = await menuRepository.getMenuItem(itemId);
+            const result = await this.menuRepository.getMenuItem(itemId);
             return {
                 success: true,
                 message: 'Menu item fetched successfully',
@@ -40,7 +40,7 @@ export class menuService {
 
     async createMenuItem(newItem: MenuItem) { // TODO
         try { // old ? review, refactor
-            const result = await menuRepository.createMenuItem(newItem);
+            const result = await this.menuRepository.createMenuItem(newItem);
             return {
                 success: true,
                 message: 'Menu item created successfully',
@@ -57,7 +57,7 @@ export class menuService {
 
     async updateMenuItem(updatedItem: MenuItem) { // TODO
         try{
-            const result = await menuRepository.updateMenuItem(updatedItem);
+            const result = await this.menuRepository.updateMenuItem(updatedItem);
             return {
                 success: true,
                 message: 'Menu item updated successfully',
@@ -74,7 +74,7 @@ export class menuService {
 
     async deleteMenuItem(itemId: number) { // TODO
         try{
-            const result = await menuRepository.deleteMenuItem(itemId);
+            const result = await this.menuRepository.deleteMenuItem(itemId);
             if (result) {
                 return {
                     success: true,
