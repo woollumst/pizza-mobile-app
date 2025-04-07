@@ -23,7 +23,11 @@ export class MenuController {
         } catch (error) {
             console.log('Server error with fetching Menu');
             console.error(error);
-            res.status(500).json({ message: 'Internal Server Error' });
+            res.status(500).json({ 
+                success: false,
+                message: 'Internal Server Error',
+                error: 'Failed to Fetch Menu',
+             });
         }
     }
 
@@ -37,39 +41,63 @@ export class MenuController {
             }
             res.status(200).json({
                 success: true,
-                menuItem: result.menuItem,
+                menuItem: result.menuItem, // Return specified MenuItem
             });
         } catch (error) {
             console.log('Server error with fetching Menu Item');
             console.error(error);
-            res.status(500).json({ message: 'Internal Server Error' });
-        }
+            res.status(500).json({ 
+                success: false,
+                message: 'Internal Server Error',
+                error: 'Failed to Fetch Menu Item',
+             });        }
     }
 
     // ***************************************************
     //  ADMIN COMMANDS
     // ***************************************************
-
     // CREATE MENU ITEMS
     async createMenuItem(req: Request, res: Response) {
         try{
-            // TODO
+            const menuItem = req.body;
+            const result = await this.menuService.createMenuItem(menuItem);
+            if(!result.success){
+                res.status(404).json({ error: 'Failed to create Menu Item' });
+            }
+            res.status(200).json({
+                success: true,
+                menuItem: result.menuItem, // Return created MenuItem
+            });
         } catch (error) {
             console.log('Server error with creating Menu Item');
             console.error(error);
-            res.status(500).json({ message: 'Internal Server Error' });
-        }
+            res.status(500).json({ 
+                success: false,
+                message: 'Internal Server Error',
+                error: 'Failed to Create Menu Item',
+             });        }
     }
 
     // UPDATE / EDIT MENU ITEMS
     async updateMenuItem(req: Request, res: Response) {
         try{
-            // TODO
+            const menuItem = req.body;
+            const result = await this.menuService.updateMenuItem(menuItem);
+            if(!result.success){
+                res.status(404).json({ error: 'Failed to update Menu Item' });
+            }
+            res.status(200).json({
+                success: true,
+                menuItem: result.menuItem, // Return updated MenuItem
+            });
         } catch (error) {
             console.log('Server error with updating Menu Item');
             console.error(error);
-            res.status(500).json({ message: 'Internal Server Error' });
-        }
+            res.status(500).json({ 
+                success: false,
+                message: 'Internal Server Error',
+                error: 'Failed to Update Menu Item',
+             });        }
     }
 
     // DELETE MENU ITEMS
@@ -81,7 +109,10 @@ export class MenuController {
         } catch (error) {
             console.log('Server error with deleting Menu Item');
             console.error(error);
-            res.status(500).json({ message: 'Internal Server Error' });
-        }
+            res.status(500).json({ 
+                success: false,
+                message: 'Internal Server Error',
+                error: 'Failed to Delete Menu Item',
+             });        }
     }
 }
