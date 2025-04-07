@@ -8,7 +8,7 @@ afterAll(async() => {
     await sequelize.close();
 })
 
-describe('Sequelize PSQL', () => {
+describe('Sequelize PSQL Tables', () => {
     it('should have the Users table', async () => {
         const tables = await sequelize.getQueryInterface().showAllTables();
         expect(tables).toContain('Users');
