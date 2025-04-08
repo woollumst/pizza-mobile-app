@@ -1,11 +1,13 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({
+    path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+}); // For tests, use test env, so separate db can be used
 
 const sequelize = new Sequelize({
     host: process.env.DB_HOST,
-    dialect: 'postgres',
+    dialect: process.env.DB_DIALECT,
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
@@ -19,7 +21,5 @@ const testConnection = async () => {
         console.error('Failed to connect to Database!');
     }
 };
-
-testConnection;
 
 export default sequelize;
