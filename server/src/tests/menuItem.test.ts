@@ -1,7 +1,15 @@
 import MenuItem from "../models/MenuItem";
 
+beforeAll(async () => {
+    await sequelize.sync({ force: true })
+});
+
 afterEach(async () => {
-    await MenuItem.destroy({ where: {} }); // Clean out all menu items after tests
+    await MenuItem.destroy({ where: {} }); // Clean out all menu items after each test
+});
+
+afterAll(async () => {
+    await sequelize.close();
 });
 
 describe('MenuItem Model', () => {
