@@ -3,31 +3,35 @@ import sequelize from "../repositories/db";
 import Order from "./Order";
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
-    declare userId: CreationOptional<number>;
     declare userName: string;
-    declare email: string;
+    declare hashedPassword: string;
+    // declare email: string;
     // declare passwordHash: string; // ** TODO ** : SET UP PASSWORD HASHING
-    declare createdAt: Date;
     // Foreign Keys managed with Associations
 }
 
 User.init(
     {
-        userId: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-        },
+        // userId: {
+        //     type: DataTypes.INTEGER,
+        //     autoIncrement: true,
+        //     primaryKey: true,
+        // },
         userName: {
             type: DataTypes.STRING,
+            allowNull: false,
         },
-        email: {
+        hashedPassword: {
             type: DataTypes.STRING,
+            allowNull: false,
         },
-        createdAt: DataTypes.DATE,
+        // email: {
+        //     type: DataTypes.STRING,
+        // },
     },
     {
         tableName: 'Users',
+        timestamps: true,
         sequelize,
     },
 );

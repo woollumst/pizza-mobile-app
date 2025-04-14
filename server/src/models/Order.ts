@@ -7,8 +7,6 @@ class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>
     declare orderId: CreationOptional<number>;
     declare orderStatus: string; // Set up enums? PENDING, PREPARING, READY, DELIVERED, CANCELLED
     declare totalPrice: number; // Price at time of purchase
-    declare createdAt: Date;
-    declare updatedAt: Date;
     // Foreign Keys managed with Associations
     // Order gets User Foreign Key
 }
@@ -26,11 +24,10 @@ Order.init(
         totalPrice: {
             type: DataTypes.DECIMAL(10,2),
         },
-        createdAt: DataTypes.DATE,
-        updatedAt: DataTypes.DATE,
     },
     {
         tableName: 'Orders',
+        timestamps: true,
         sequelize,
     },
 );
