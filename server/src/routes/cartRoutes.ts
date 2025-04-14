@@ -1,12 +1,20 @@
-// Manage user's cart, which will be composed of menuItems and used to create an Order 
+/* import { Router } from 'express';
+import { addToCart, getCart, updateCartItem, removeCartItem } from '../controllers/cartController';
+import authMiddleware from '../middleware/authMiddleware'; // Ensure you're importing authentication middleware
 
+const router = Router();
 
+// Route to fetch the user's cart
+router.get('/', authMiddleware, getCart); // Assumes you need authentication to get the cart
 
+// Route to add a menuItem to the cart
+router.post('/add', authMiddleware, addToCart);
 
-// Get /                Fetch cart
+// Route to update the quantity of an item in the cart
+router.put('/update/:id', authMiddleware, updateCartItem);
 
-// Post /add            add menuItem to cart
+// Route to remove a menuItem from the cart
+router.delete('/remove/:id', authMiddleware, removeCartItem);
 
-// Put /update/:id      change qunatity of menuItem in cart
-
-// Delete /remove/:id   remove menuItem from cart
+export default router;
+ */

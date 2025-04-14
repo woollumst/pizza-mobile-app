@@ -16,13 +16,21 @@ Cart.init(
             autoIncrement: true,
             primaryKey: true,
         },
+/*         menuItemId: { 
+            type: DataTypes.INTEGER, 
+            allownNull: false 
+        },
+        userId: { 
+            type: DataTypes.INTEGER, 
+            allownNull: false
+        }, */
         quantity: {
             type: DataTypes.INTEGER,
-        }
+        },
     },
     {
         tableName: 'Carts',
-        sequelize,
+        sequelize
     },
 );
 
