@@ -1,13 +1,15 @@
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-// import User from "../models/User"; // Refactor for User Model?
-import { AuthRepository } from "../repositories/menuRepository";
+import User from "../models/User"; // Refactor for User Model?
+import { AuthRepository } from "../repositories/authRepository";
+
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 export class AuthService {
     constructor(private authRepository: AuthRepository) {}
 
-    async register(username: String, password: String) {
+    async register(username: string, password: string) {
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = await this.authRepository.register(username, hashedPassword);
@@ -15,10 +17,7 @@ export class AuthService {
             return {
                 success: true,
                 message: 'Registration Successful!',
-                user: {
-                    id: user.id,
-                    username: user.username,
-                },
+                user: user,
                 token: token,
             }
         } catch (error) {
@@ -30,21 +29,20 @@ export class AuthService {
         }
     }
 
-    // ** USING ANY, Ideally let's go back and refactor this later
-    async checkPassword(user: any, password: String) { 
-        return await bcrypt.compare(password, user.password);
+
+    async checkPassword(user: User, password: string) { 
+        return await bcrypt.compare(password, user.hashedPassword);
     }
 
-    // ** USING ANY, Ideally let's go back and refactor this later
-    getToken(user: any) {
+    getToken(user: User) {
         return jwt.sign(
-            { id: user.id, username: user.username },
-            process.env.JWT_SECRET,
-            { expireIn: '1h' }
-        ); 
+            { userName: user.userName },
+            JWT_SECRET,
+            { expiresIn: '1h' }
+        );
     }
 
-    async login(username: String, password: String) {
+    async login(username: string, password: string) {
         try {
             const user = await this.authRepository.getByUsername(username);
             if(!user)
@@ -58,10 +56,7 @@ export class AuthService {
             return{
                 success: true,
                 message: 'Login Successful!',
-                user: {
-                    id: user.id,
-                    username: user.username
-                },
+                user: user,
                 token,
             };
         } catch (error) {
