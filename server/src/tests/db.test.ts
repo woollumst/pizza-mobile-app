@@ -1,12 +1,4 @@
-import sequelize from '../repositories/db';
-
-beforeAll(async() => {
-    await sequelize.sync({ force: true });
-});
-
-afterAll(async() => {
-    await sequelize.close();
-})
+import sequelize from '../repositories/db'; // Delete?
 
 describe('Sequelize PSQL Tables', () => {
     it('should have the Users table', async () => {

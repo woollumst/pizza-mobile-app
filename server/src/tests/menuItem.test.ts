@@ -26,8 +26,6 @@ describe('MenuItem Model', () => {
             itemName: 'Pizza',
             price: 10.99,
             category: 'Main',
-            createdAt: new Date(Date.now()),
-            updatedAt: new Date(Date.now()),
         });
 
         expect(menuItem).toHaveProperty('itemId');
@@ -42,8 +40,6 @@ describe('MenuItem Model', () => {
                 itemName: "", // Tried to have missing name
                 price: 10.99,
                 category: 'Main',
-                createdAt: new Date(Date.now()),
-                updatedAt: new Date(Date.now()),
             });
         } catch (error: any) {
             expect(error).toBeDefined();
