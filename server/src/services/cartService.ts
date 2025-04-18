@@ -1,32 +1,31 @@
-/* import cartRepository from '../repositories/cartRepository';
+import { CartRepository } from '../repositories/cartRepository';
 
-const cartService = {
+export class CartService {
+  constructor(private cartRepository: CartRepository) {}
+
   async addItem(userId: number, menuItemId: number, quantity: number) {
-    const existingItem = await cartRepository.findCartItem(userId, menuItemId);
+    const existingItem = await this.cartRepository.findCartItem(userId, menuItemId);
     
     if (existingItem) {
       const newQuantity = existingItem.quantity + quantity;
-      await cartRepository.updateCartItemQuantity(existingItem.id, newQuantity);
+      await this.cartRepository.updateCartItemQuantity(existingItem.id, newQuantity);
       return { ...existingItem.toJSON(), quantity: newQuantity };
     }
 
-    const newItem = await cartRepository.createCartItem(userId, menuItemId, quantity);
+    const newItem = await this.cartRepository.createCartItem(userId, menuItemId, quantity);
     return newItem;
-  },
+  }
 
   async getCart(userId: number) {
-    return await cartRepository.findCartByUserId(userId);
-  },
+    return await this.cartRepository.findCartByUserId(userId);
+  }
 
   async updateItemQuantity(userId: number, itemId: number, quantity: number) {
-    await cartRepository.updateCartItemQuantity(itemId, quantity);
+    await this.cartRepository.updateCartItemQuantity(itemId, quantity);
     return { id: itemId, quantity };
-  },
+  }
 
   async removeItem(userId: number, itemId: number) {
-    await cartRepository.deleteCartItem(itemId);
-  },
-};
-
-export default cartService;
- */
+    await this.cartRepository.deleteCartItem(itemId);
+  }
+}

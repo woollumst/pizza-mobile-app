@@ -1,20 +1,19 @@
-/* import { Router } from 'express';
-import { addToCart, getCart, updateCartItem, removeCartItem } from '../controllers/cartController';
-import authMiddleware from '../middleware/authMiddleware'; // Ensure you're importing authentication middleware
+import { Router } from 'express';
+import { CartController } from '../controllers/cartController';
 
-const router = Router();
+const cartRoutes = Router();
+const cartController = new CartController();
 
 // Route to fetch the user's cart
-router.get('/', authMiddleware, getCart); // Assumes you need authentication to get the cart
+cartRoutes.get('/', async (req, res) => cartController.getCart(req, res)); // Assumes you need authentication to get the cart
 
 // Route to add a menuItem to the cart
-router.post('/add', authMiddleware, addToCart);
+cartRoutes.post('/add', async (req, res) => cartController.addToCart(req, res));
 
 // Route to update the quantity of an item in the cart
-router.put('/update/:id', authMiddleware, updateCartItem);
+cartRoutes.put('/update/:id', async (req, res) => cartController.updateCartItem(req, res));
 
 // Route to remove a menuItem from the cart
-router.delete('/remove/:id', authMiddleware, removeCartItem);
+cartRoutes.delete('/remove/:id', async (req, res) => cartController.removeCartItem(req, res));
 
-export default router;
- */
+export default cartRoutes;
