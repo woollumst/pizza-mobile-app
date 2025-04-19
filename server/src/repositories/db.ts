@@ -10,11 +10,16 @@ const isTest = process.env.NODE_ENV === 'test';
 const sequelize = isTest
   ? new Sequelize({
       dialect: 'sqlite',
-      storage: process.env.DB_STORAGE || ':memory:',
+      storage: ':memory:',
+      host: process.env.DB_HOST,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       logging: false
     })
   : new Sequelize({
       host: process.env.DB_HOST,
+      dialect: 'postgres',
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME

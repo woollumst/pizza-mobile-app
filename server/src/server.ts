@@ -30,10 +30,12 @@ const logCreatedTables = async () => {
     }
 }
 
-app.listen(port, () => { // Launch server
-    console.log(`Server listening at http://${host}:${port}`);
-    logCreatedTables();
-});
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => { // Launch server
+        console.log(`Server listening at http://${host}:${port}`);
+        logCreatedTables();
+    });
+}
 
 export { app }; // exporting app for testing
 

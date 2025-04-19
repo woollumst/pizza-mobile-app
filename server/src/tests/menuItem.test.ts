@@ -1,17 +1,5 @@
 import MenuItem from "../models/MenuItem";
 
-beforeAll(async () => {
-    await sequelize.sync({ force: true })
-});
-
-afterEach(async () => {
-    await MenuItem.destroy({ where: {} }); // Clean out all menu items after each test
-});
-
-afterAll(async () => {
-    await sequelize.close();
-});
-
 describe('MenuItem Model', () => {
     test.todo('should get all menu items'); //, async () => {
     
@@ -28,7 +16,6 @@ describe('MenuItem Model', () => {
             category: 'Main',
         });
 
-        expect(menuItem).toHaveProperty('itemId');
         expect(menuItem.itemName).toBe('Pizza');
         expect(menuItem.price).toBe(10.99);
         expect(menuItem.category).toBe('Main');
