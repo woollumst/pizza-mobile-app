@@ -21,10 +21,11 @@ describe('MenuItem Model', () => {
         expect(menuItem.category).toBe('Main');
     });
 
+    // TODO, passes no matter what =/ fix
     it('should fail when creating menu item with missing required fields', async () => {
         try{
             await MenuItem.create({
-                itemName: "", // Tried to have missing name
+                itemName: "", // Tried to have missing name, didn't work
                 price: 10.99,
                 category: 'Main',
             });
