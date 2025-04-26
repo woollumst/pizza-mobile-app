@@ -1,4 +1,4 @@
-import MenuItem from "../models/MenuItem";
+import MenuItem from '../models/MenuItem';
 
 export class MenuRepository {
     // Get all Menu Items
