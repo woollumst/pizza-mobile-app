@@ -6,6 +6,7 @@ import OrderItem from './OrderItem';
 // const sequelize = new Sequelize( ... )
 
 class MenuItem extends Model<InferAttributes<MenuItem>, InferCreationAttributes<MenuItem>> {
+    declare menuItemId: number;
     declare itemName: string;
     // declare description: CreationOptional<string>; // Optional description
     declare price: number;
@@ -18,6 +19,11 @@ class MenuItem extends Model<InferAttributes<MenuItem>, InferCreationAttributes<
 
 MenuItem.init(
     {
+        menuItemId: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
         itemName: {
             type: DataTypes.STRING,
             allowNull: false,

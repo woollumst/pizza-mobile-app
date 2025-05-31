@@ -11,7 +11,9 @@ export class OrderItemController {
 
     async getOrderItems(req: Request, res: Response) {
         try{
-            const { orderId } = req.params;
+            const { orderIdString } = req.params;
+            console.log(orderIdString);
+            const orderId = parseInt(orderIdString);
             const result = await this.orderItemService.getOrderItems(orderId);
 
             if(!result.success)
