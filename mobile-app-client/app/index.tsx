@@ -13,6 +13,8 @@ export default function Index() {
     >
       <Text>Home Screen</Text>
       <Link href="/cart">Go to Cart</Link>
+      <Link href="/auth/login">Login</Link>
+      <Link href="/auth/register">Register</Link>
     </SafeAreaView>
   );
 }
